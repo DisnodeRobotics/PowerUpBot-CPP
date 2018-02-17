@@ -34,6 +34,9 @@ public:
 	static std::shared_ptr<Encoder> encoderRight;
 
 	//Software
+	static std::shared_ptr<DifferentialDrive> robotDrive;
+	static std::shared_ptr<SpeedControllerGroup> sgroupDriveL;
+	static std::shared_ptr<SpeedControllerGroup> sgroupDriveR;
 
 	static void Init();
 };

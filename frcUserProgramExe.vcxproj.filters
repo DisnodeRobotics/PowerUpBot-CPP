@@ -27,6 +27,9 @@
     <ClCompile Include="src\Subsystems\Drivetrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup Label="Headers">
     <ClInclude Include="src\include\MyHeader.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Subsystems\Drivetrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Drive\DriveJoystick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

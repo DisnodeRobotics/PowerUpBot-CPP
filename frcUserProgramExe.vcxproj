@@ -32,12 +32,14 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp" />
     <ClCompile Include="src\Subsystems\Drivetrain.cpp" />
     <ClCompile Include="src\OI.cpp" />
     <ClCompile Include="src\RoboMap.cpp" />
     <ClCompile Include="src\Robot.cpp" />
   </ItemGroup>
   <ItemGroup Label="Headers">
+    <ClInclude Include="src\Commands\Drive\DriveJoystick.h" />
     <ClInclude Include="src\Subsystems\Drivetrain.h" />
     <ClInclude Include="src\include\MyHeader.h" />
     <ClInclude Include="src\OI.h" />

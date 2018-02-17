@@ -18,4 +18,9 @@ void RoboMap::Init()
 	sparkLift.reset(new Spark(PWMPorts::LIFT));
 
 	navX.reset(new AHRS(SPI::Port::kMXP));
+
+	sgroupDriveL.reset(new SpeedControllerGroup(*sparkDriveLF, *sparkDriveLR));
+	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));
+
+	robotDrive.reset(new DifferentialDrive(*sgroupDriveL, *sgroupDriveR));
 }
