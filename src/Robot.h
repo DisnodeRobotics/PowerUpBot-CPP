@@ -4,14 +4,14 @@
 #include <Commands/Command.h>
 #include "RoboMap.h"
 #include <Subsystems/Drivetrain.h>
-
+#include <victoryconnect\VictoryConnectClient.h>
 class Robot : public IterativeRobot {
 public:
 	std::unique_ptr<Command> drivejoystick;
 
 	static std::shared_ptr<Drivetrain> drivetrain;
 	static std::unique_ptr<OI> oi;
-
+	static std::shared_ptr<VictoryConnectClient> victoryConnect;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();
@@ -21,4 +21,5 @@ public:
 	virtual void TeleopPeriodic();
 	virtual void TestInit();
 	virtual void TestPeriodic();
+	void VictoryPeroidic();
 };

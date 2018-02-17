@@ -11,6 +11,9 @@ void Robot::RobotInit() {
 
 	drivejoystick.reset(new DriveJoystick());
 
+	victoryConnect.reset(new VictoryConnectClient());
+	victoryConnect->Connect("10.40.56.7");
+
 }
 void Robot::DisabledInit()
 {
@@ -24,6 +27,7 @@ void Robot::DisabledPeriodic()
 #ifdef BROWNOUT
 	if (DriverStation::GetInstance().IsSysBrownedOut())
 		printf("ERROR: System brownout!\n");
+	
 }
 #endif
 }
@@ -61,7 +65,7 @@ void Robot::TeleopPeriodic()
 {
 	Scheduler::GetInstance()->Run();
 
-
+	VictoryPeroidic();
 #ifdef BROWNOUT
 	if (DriverStation::GetInstance().IsSysBrownedOut())
 		printf("ERROR: System brownout!\n");
@@ -77,5 +81,19 @@ void Robot::TestInit()
 void Robot::TestPeriodic()
 {
 }
+
+void Robot::VictoryPeroidic()
+{
+	victoryConnect->SendPacket(0, "encoder_drive", 
+		to_string(drivetrain->GetEncoderLDistance()) + ";" +
+		to_string(drivetrain->GetEncoderRDistance()) + ";" +
+		to_string(drivetrain->GetAverageEncoderDistance()) + ";");
+	
+	victoryConnect->SendPacket(0, "navx_heading_rio",
+		to_string(RoboMap::navX->GetFusedHeading()) + ";");
+
+}
+
+
 
 START_ROBOT_CLASS(Robot)
