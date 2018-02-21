@@ -9,19 +9,13 @@ public:
 	static std::shared_ptr<Spark> sparkDriveLR;
 	static std::shared_ptr<Spark> sparkDriveRF;
 	static std::shared_ptr<Spark> sparkDriveRR;
-	
-	static std::shared_ptr<Spark> sparkClimbL;
-	static std::shared_ptr<Spark> sparkClimbR;
 
-	static std::shared_ptr<Spark> sparkIntakeL;
-	static std::shared_ptr<Spark> sparkIntakeR;
+
+	static std::shared_ptr<Spark> sparkIntake;
 
 	static std::shared_ptr<Spark> sparkLift;
 
-	static std::shared_ptr<DoubleSolenoid> solenoidPlatform1;
-	static std::shared_ptr<DoubleSolenoid> solenoidPlatform2;
-	static std::shared_ptr<DoubleSolenoid> solenoidPlatform3;
-	static std::shared_ptr<DoubleSolenoid> solenoidPlatform4;
+	static std::shared_ptr<Servo> servoRelease;
 
 	//Sensors
 	static std::shared_ptr<AHRS> navX;

@@ -29,12 +29,13 @@ void Drivetrain::SetTankDrive(float leftPower, float rightPower)
 
 void Drivetrain::SetArcadeDrive(float movePower, float rotatePower)
 {
+	
 	robotDrive->ArcadeDrive(movePower, rotatePower);
 }
 
 void Drivetrain::SetManualDrive(float outputPower, float curveSharpness)
 {
-	robotDrive->Drive(outputPower, curveSharpness);
+	
 }
 
 

@@ -11,7 +11,7 @@ bool VictoryConnectClient::Connect(string host)
     do
     {   
         logger.Info("Connect", "Connecting to server at: " + host);
-       
+        
 
         if (tcpClient->setup(host, 9000))
         {
@@ -27,6 +27,7 @@ bool VictoryConnectClient::Connect(string host)
         {
             logger.Error("Connect", "Failed to connect. Retrying in 3s");
             connected = false;
+
             sleep(3.0);
         }
     } while (connected == false);

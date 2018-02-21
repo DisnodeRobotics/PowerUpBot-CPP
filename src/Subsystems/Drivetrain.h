@@ -11,7 +11,7 @@ private:
 	std::shared_ptr<Spark> Spark4;
 	std::shared_ptr<SpeedControllerGroup> GroupL;
 	std::shared_ptr<SpeedControllerGroup> GroupR;
-	std::shared_ptr<RobotDrive> robotDrive;
+	std::shared_ptr<DifferentialDrive> robotDrive;
 	std::shared_ptr<Encoder> encoderL;
 	std::shared_ptr<Encoder> encoderR;
 public:

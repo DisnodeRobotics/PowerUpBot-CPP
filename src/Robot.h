@@ -21,5 +21,6 @@ public:
 	virtual void TeleopPeriodic();
 	virtual void TestInit();
 	virtual void TestPeriodic();
-	void VictoryPeroidic();
+	static void VictoryInit();
+	static void VictoryPeroidic();
 };

@@ -16,13 +16,7 @@ void DriveJoystick::Initialize()
 
 void DriveJoystick::Execute()
 {
-	Robot::drivetrain->GetEncoderDistance();
-
-	if (Robot::getInstance().IsOperatorControl())
-	{
-		
-
-	}
+	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriver()->GetY(), Robot::oi->getDriver()->GetX());
 }
 
 bool DriveJoystick::IsFinished()

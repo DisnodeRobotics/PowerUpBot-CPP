@@ -12,7 +12,7 @@ class VictoryConnectClient
   private:
     TCPClient *tcpClient;
     Logger logger;
-    bool connected;
+    bool connected = false;
     void sig_exit(int s)
     {
         tcpClient->exit();

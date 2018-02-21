@@ -1,18 +1,26 @@
 #include "WPILib.h"
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
-using namespace frc;
-
+#include "Commands/LiftBinary.h"
+std::shared_ptr<Drivetrain> Robot::drivetrain;
+std::unique_ptr<OI> Robot::oi;
+std::shared_ptr<VictoryConnectClient> Robot::victoryConnect;
 
 void Robot::RobotInit() {
-	drivetrain.reset(new Drivetrain());
-	oi.reset(new OI());
-	RoboMap::navX->ZeroYaw();
-
-	drivejoystick.reset(new DriveJoystick());
+	RoboMap::Init();
+	std::cout << "ROBO IS DA STARTING" << std::endl;
+	
 
 	victoryConnect.reset(new VictoryConnectClient());
-	victoryConnect->Connect("10.40.56.7");
+	drivetrain.reset(new Drivetrain());
+	
+	oi.reset(new OI());
+
+	RoboMap::navX->ZeroYaw();
+	printf("Zeroed Yaw in init!\n");
+	
+	drivejoystick.reset(new DriveJoystick());
+	CameraServer::GetInstance()->StartAutomaticCapture();
 
 }
 void Robot::DisabledInit()
@@ -22,37 +30,28 @@ void Robot::DisabledInit()
 
 void Robot::DisabledPeriodic()
 {
-	Scheduler::GetInstance()->Run();
+	//Scheduler::GetInstance()->Run();
 
-#ifdef BROWNOUT
-	if (DriverStation::GetInstance().IsSysBrownedOut())
-		printf("ERROR: System brownout!\n");
-	
-}
-#endif
 }
 
 void Robot::AutonomousInit()
 {
+	std::cout << "ROBO IS DA STARTING DA AUTO" << std::endl;
+	
 }
 
 void Robot::AutonomousPeriodic()
 {
-	
-	Scheduler::GetInstance()->Run();
+	std::cout << "ROBO IS RUNNING DA AUTO" << std::endl;
+	RoboMap::solenoidPlatform1->Set(DoubleSolenoid::kForward);
+	//Scheduler::GetInstance()->Run();
 
-
-#ifdef BROWNOUT
-	if (DriverStation::GetInstance().IsSysBrownedOut())
-		printf("ERROR: System brownout!\n");
-}
-#endif
 }
 
 void Robot::TeleopInit()
 {
 
-	//RoboMap::NavX->Reset();
+	RoboMap::navX->Reset();
 	printf("Info: Reset NavX\n");
 
 	drivejoystick->Start();
@@ -65,12 +64,10 @@ void Robot::TeleopPeriodic()
 {
 	Scheduler::GetInstance()->Run();
 
-	VictoryPeroidic();
-#ifdef BROWNOUT
-	if (DriverStation::GetInstance().IsSysBrownedOut())
-		printf("ERROR: System brownout!\n");
-}
-#endif
+	//thread vicInitThread(Robot::VictoryInit);
+	//thread vicLoopThread(Robot::VictoryPeroidic);
+	//vicLoopThread.detach();
+	//RoboMap::solenoidPlatform1->Set(DoubleSolenoid::kForward);
 }
 
 void Robot::TestInit()
@@ -82,14 +79,18 @@ void Robot::TestPeriodic()
 {
 }
 
+void Robot::VictoryInit() {
+	std::cout << "STARTING!" << std::endl;
+	
+}
 void Robot::VictoryPeroidic()
 {
-	victoryConnect->SendPacket(0, "encoder_drive", 
+	Robot::victoryConnect->SendPacket(0, "encoder_drive",
 		to_string(drivetrain->GetEncoderLDistance()) + ";" +
 		to_string(drivetrain->GetEncoderRDistance()) + ";" +
 		to_string(drivetrain->GetAverageEncoderDistance()) + ";");
 	
-	victoryConnect->SendPacket(0, "navx_heading_rio",
+	Robot::victoryConnect->SendPacket(0, "navx_heading_rio",
 		to_string(RoboMap::navX->GetFusedHeading()) + ";");
 
 }
