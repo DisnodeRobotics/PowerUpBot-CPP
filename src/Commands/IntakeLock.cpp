@@ -1,16 +1,16 @@
 #include "IntakeLock.h"
 #include "RoboMap.h"
+
+
+
 IntakeLock::IntakeLock()
 {
 	this->intakeSpark = RoboMap::sparkIntake.get();
-
 }
-
-void IntakeLock::IntakeLock()
+void IntakeLock::Initialize()
 {
 
 }
-
 void IntakeLock::Execute()
 {
 	

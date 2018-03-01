@@ -1,6 +1,6 @@
 #pragma once
 #include "WPILib.h"
-
+#include <memory>
 class OI
 {
 private:
@@ -9,8 +9,9 @@ private:
 	std::shared_ptr<JoystickButton> liftDownButton;
 	std::shared_ptr<JoystickButton> intakeInButton;
 	std::shared_ptr<JoystickButton> intakeOutButton;
+	std::shared_ptr<JoystickButton> intakeLockButton;
 	std::shared_ptr<JoystickButton> releaseButton;
-	std::shared_ptr<JoystickButton>
+
 	
 public:
 	OI();

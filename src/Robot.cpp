@@ -2,6 +2,7 @@
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
 #include "Commands/LiftBinary.h"
+#include <memory>
 std::shared_ptr<Drivetrain> Robot::drivetrain;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<VictoryConnectClient> Robot::victoryConnect;
@@ -43,7 +44,7 @@ void Robot::AutonomousInit()
 void Robot::AutonomousPeriodic()
 {
 	std::cout << "ROBO IS RUNNING DA AUTO" << std::endl;
-	RoboMap::solenoidPlatform1->Set(DoubleSolenoid::kForward);
+	
 	//Scheduler::GetInstance()->Run();
 
 }

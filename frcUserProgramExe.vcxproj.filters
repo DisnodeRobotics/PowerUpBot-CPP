@@ -51,6 +51,9 @@
     <ClCompile Include="src\Commands\ReleaseOnce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\IntakeLock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup Label="Headers">
     <ClInclude Include="src\include\MyHeader.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\ReleaseOnce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\IntakeLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
