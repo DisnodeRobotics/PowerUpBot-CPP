@@ -1,5 +1,6 @@
 #include "IntakeBinary.h"
 #include "RoboMap.h"
+
 IntakeBinary::IntakeBinary(bool val)
 {
 	this->intakeSpark = RoboMap::sparkIntake.get();
