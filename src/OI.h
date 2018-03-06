@@ -4,7 +4,8 @@
 class OI
 {
 private:
-	std::shared_ptr<Joystick> driverJoyboy;
+	std::shared_ptr<Joystick> driverJoyboyLeft;
+	std::shared_ptr<Joystick> driverJoyboyRight;
 	std::shared_ptr<JoystickButton> liftUpButton;
 	std::shared_ptr<JoystickButton> liftDownButton;
 	std::shared_ptr<JoystickButton> intakeInButton;
@@ -15,7 +16,8 @@ private:
 	
 public:
 	OI();
-	std::shared_ptr<Joystick> getDriver();
+	std::shared_ptr<Joystick> getDriverLeft();
+	std::shared_ptr<Joystick> getDriverRight();
 	~OI();
 };
 

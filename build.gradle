@@ -28,7 +28,7 @@ model {
     components {
         frcUserProgram(NativeExecutableSpec) {
             // Target the RoboRIO (arm-frc-linux-gnueabihf)
-            targetPlatform 'roborio'https://cdn.discordapp.com/attachments/369356016564961292/416835849171369984/Abel.jpeg
+            targetPlatform 'roborio'
 
             sources.cpp {
                 // This is where our source files are located (src/cpp for C++ files, src/include for headers)
