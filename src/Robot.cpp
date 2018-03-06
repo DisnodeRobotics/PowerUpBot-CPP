@@ -7,8 +7,10 @@ std::shared_ptr<Drivetrain> Robot::drivetrain;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<VictoryConnectClient> Robot::victoryConnect;
 
+
 void Robot::RobotInit() {
 	RoboMap::Init();
+
 	std::cout << "ROBO IS DA STARTING" << std::endl;
 	
 
@@ -87,13 +89,21 @@ void Robot::VictoryInit() {
 void Robot::VictoryPeroidic()
 {
 	Robot::victoryConnect->SendPacket(0, "encoder_drive",
-		to_string(drivetrain->GetEncoderLDistance()) + ";" +
-		to_string(drivetrain->GetEncoderRDistance()) + ";" +
-		to_string(drivetrain->GetAverageEncoderDistance()) + ";");
-	
-	Robot::victoryConnect->SendPacket(0, "navx_heading_rio",
-		to_string(RoboMap::navX->GetFusedHeading()) + ";");
+		to_string(drivetrain->GetEncoderLDistance()) + " " +
+		to_string(drivetrain->GetEncoderRDistance()) + " " +
+		to_string(drivetrain->GetAverageEncoderDistance()) + " ");
 
+	//NAV X
+	Robot::victoryConnect->SendPacket(0, "navx_heading",
+		to_string(RoboMap::navX->GetFusedHeading()) + " ");
+
+
+	Robot::victoryConnect ->SendPacket(0, "motor_power", "drive_left_front " + to_string(RoboMap::sparkDriveLF->Get()));
+	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_left_rear " + to_string(RoboMap::sparkDriveLR->Get()));
+	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_right_front " + to_string(RoboMap::sparkDriveRF->Get()));
+	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_right_rear " + to_string(RoboMap::sparkDriveRR->Get()));
+
+	
 }
 
 

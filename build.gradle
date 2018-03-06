@@ -28,7 +28,8 @@ model {
     components {
         frcUserProgram(NativeExecutableSpec) {
             // Target the RoboRIO (arm-frc-linux-gnueabihf)
-            targetPlatform 'roborio'
+            targetPlatform 'roborio'https://cdn.discordapp.com/attachments/369356016564961292/416835849171369984/Abel.jpeg
+
             sources.cpp {
                 // This is where our source files are located (src/cpp for C++ files, src/include for headers)
                 source {
@@ -45,7 +46,8 @@ model {
                 lib library: "ctre"
                 lib library: "navx"
                 lib library: "openrio.powerup.matchData"
-                lib library: "pathfinder"
+				lib library: "pathfinder"
+
             }
         }
     }

@@ -35,7 +35,13 @@ bool VictoryConnectClient::Connect(string host)
 
 
 bool VictoryConnectClient::SendPacket(int type, string topic, string value){
-    return tcpClient->Send("0 " + to_string(type) + " " + topic + " " + value + "**");
+	if (connected) {
+		return tcpClient->Send("0 " + to_string(type) + " " + topic + " " + value + "**");
+	}
+	else {
+		return false;
+	}
+    
 }
 
 void VictoryConnectClient::recv_loop(TCPClient *client)
