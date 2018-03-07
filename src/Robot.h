@@ -12,6 +12,7 @@ public:
 	static std::shared_ptr<Drivetrain> drivetrain;
 	static std::unique_ptr<OI> oi;
 	static std::shared_ptr<VictoryConnectClient> victoryConnect;
+	std::unique_ptr<CommandGroup> autonomousCommand;
 	virtual void RobotInit();
 	virtual void DisabledInit();
 	virtual void DisabledPeriodic();

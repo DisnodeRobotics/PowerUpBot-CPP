@@ -11,12 +11,13 @@ DriveJoystick::DriveJoystick() :
 }
 void DriveJoystick::Initialize()
 {
-	Robot::drivetrain->SetTankDrive(0.0f, 0.0f);
+	Robot::drivetrain->SetArcadeDrive(0.0f, 0.0f);
 }
 
 void DriveJoystick::Execute()
 {
-	Robot::drivetrain->SetTankDrive(-Robot::oi->getDriverLeft()->GetY(), -Robot::oi->getDriverRight()->GetY());
+	//std::cout<<"Encoder: "<< Robot::drivetrain->GetEncoderLDistance() << std::endl;
+	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriverLeft()->GetY(), Robot::oi->getDriverRight()->GetX());
 }
 
 bool DriveJoystick::IsFinished()
@@ -26,10 +27,10 @@ bool DriveJoystick::IsFinished()
 
 void DriveJoystick::End()
 {
-	Robot::drivetrain->SetTankDrive(0.0f, 0.0f);
+	Robot::drivetrain->SetArcadeDrive(0.0f, 0.0f);
 }
 void DriveJoystick::Interrupted()
 {
-	Robot::drivetrain->SetTankDrive(0.0f, 0.0f);
+	Robot::drivetrain->SetArcadeDrive(0.0f, 0.0f);
 	std::printf("Warning: DriveJoystick interrupted!\n");
 }

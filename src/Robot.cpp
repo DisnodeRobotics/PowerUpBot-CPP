@@ -2,6 +2,7 @@
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
 #include "Commands/LiftBinary.h"
+#include "Commands/Auto/Autonomous.h"
 #include <memory>
 std::shared_ptr<Drivetrain> Robot::drivetrain;
 std::unique_ptr<OI> Robot::oi;
@@ -23,6 +24,8 @@ void Robot::RobotInit() {
 	printf("Zeroed Yaw in init!\n");
 	
 	drivejoystick.reset(new DriveJoystick());
+	autonomousCommand.reset(new Autonomous());
+
 	CameraServer::GetInstance()->StartAutomaticCapture();
 
 }
@@ -40,14 +43,15 @@ void Robot::DisabledPeriodic()
 void Robot::AutonomousInit()
 {
 	std::cout << "ROBO IS DA STARTING DA AUTO" << std::endl;
+	autonomousCommand->Start();
 	
 }
 
 void Robot::AutonomousPeriodic()
 {
-	std::cout << "ROBO IS RUNNING DA AUTO" << std::endl;
 	
-	//Scheduler::GetInstance()->Run();
+	
+	Scheduler::GetInstance()->Run();
 
 }
 

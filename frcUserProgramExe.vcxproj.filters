@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ItemGroup Label="Filters">
     <Filter Include="Source Files">
@@ -15,22 +15,28 @@
     <ClCompile Include="build.gradle">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\Robot.cpp">
+    <ClCompile Include="src\Commands\Auto\Autonomous.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Auto\Sequences\TestPathfinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\IntakeBinary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\IntakeLock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\LiftBinary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\ReleaseOnce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\logging\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Subsystems\Drivetrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\victoryconnect\tcp\TCPClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\OI.cpp">
@@ -42,39 +48,39 @@
     <ClCompile Include="src\Robot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\LiftBinary.cpp">
+    <ClCompile Include="src\Subsystems\Drivetrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\IntakeBinary.cpp">
+    <ClCompile Include="src\victoryconnect\tcp\TCPClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\ReleaseOnce.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\IntakeLock.cpp">
+    <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup Label="Headers">
-    <ClInclude Include="src\include\MyHeader.h">
+    <ClInclude Include="src\Commands\Auto\Autonomous.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Auto\Sequences\TestPathfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\Drive\DriveJoystick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Commands\IntakeBinary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\IntakeLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\LiftBinary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\ReleaseOnce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\logging\Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Subsystems\Drivetrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\termcolor\termcolor.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\victoryconnect\tcp\TCPClient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\victoryconnect\VictoryConnectClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\MyHeader.h">
@@ -92,16 +98,16 @@
     <ClInclude Include="src\Robot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\LiftBinary.h">
+    <ClInclude Include="src\Subsystems\Drivetrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\IntakeBinary.h">
+    <ClInclude Include="src\termcolor\termcolor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\ReleaseOnce.h">
+    <ClInclude Include="src\victoryconnect\tcp\TCPClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\IntakeLock.h">
+    <ClInclude Include="src\victoryconnect\VictoryConnectClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

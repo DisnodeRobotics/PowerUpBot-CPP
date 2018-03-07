@@ -1,12 +1,14 @@
+#pragma once
 #include <iostream>
 #include <string.h>
 #include "../termcolor/termcolor.hpp"
-#include "../Robot.h"
+
 using namespace std;
 class Logger{
     private:
         string m_className = "GenericClass";
     public:
+		Logger();
         void SetClass(string className);
         
         void Info(string functionName, string toLog);

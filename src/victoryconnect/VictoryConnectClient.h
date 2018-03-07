@@ -1,3 +1,4 @@
+#pragma once
 #define PORT = 9000
 #include <iostream>
 #include "tcp/TCPClient.h"
@@ -10,8 +11,9 @@ using namespace std;
 class VictoryConnectClient
 {
   private:
+	  Logger logger;
     TCPClient *tcpClient;
-    Logger logger;
+   
     bool connected = false;
     void sig_exit(int s)
     {
