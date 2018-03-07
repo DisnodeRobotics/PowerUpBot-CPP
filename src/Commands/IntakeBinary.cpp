@@ -10,7 +10,7 @@ IntakeBinary::IntakeBinary(bool val)
 
 void IntakeBinary::Initialize()
 {
-
+	Robot::victoryConnect->SendPacket(0, "command_intake_binary", "init");
 }
 
 void IntakeBinary::Execute()
@@ -23,10 +23,13 @@ void IntakeBinary::Execute()
 		bVal = -0.3;
 	}
 	intakeSpark->Set(bVal);
+	Robot::victoryConnect->SendPacket(0, "command_intake_binary", "running");
 }
 
 
 
-void IntakeBinary::End() { intakeSpark->Set(0); }
+void IntakeBinary::End() { intakeSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_intake_binary", "stopped");
+}
 
-void IntakeBinary::Interrupted() { intakeSpark->Set(0); }
+void IntakeBinary::Interrupted() { intakeSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_intake_binary", "stopped");
+}

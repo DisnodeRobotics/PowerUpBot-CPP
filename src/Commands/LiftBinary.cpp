@@ -9,7 +9,7 @@ LiftBinary::LiftBinary(bool val)
 
 void LiftBinary::Initialize()
 {
-	
+	Robot::victoryConnect->SendPacket(0, "command_lift_binary", "init");
 }
 
 void LiftBinary::Execute()
@@ -21,11 +21,14 @@ void LiftBinary::Execute()
 	else {
 		bVal = -1;
 	}
+	Robot::victoryConnect->SendPacket(0, "command_lift_binary", "running");
 	liftSpark->Set(bVal);
 }
 
 
 
-void LiftBinary::End() { liftSpark->Set(0); }
+void LiftBinary::End() { liftSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_lift_binary", "stopped");
+}
 
-void LiftBinary::Interrupted() {liftSpark->Set(0); }
+void LiftBinary::Interrupted() {liftSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_lift_binary", "stopped");
+}

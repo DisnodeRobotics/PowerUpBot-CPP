@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "../termcolor/termcolor.hpp"
+#include "../Robot.h"
 using namespace std;
 class Logger{
     private:
