@@ -8,10 +8,10 @@
 class TestPathfinder : public CommandGroup
 {
 private:
-	/*
 	int length;
-	Segment *leftTrajectory;
-	Segment *rightTrajectory;
+	std::shared_ptr<Segment> leftTrajectory;
+	std::shared_ptr<Segment> rightTrajectory;
+
 	double wheelbase_width = 0.6;
 
 	double wheel_circumference = 6;
@@ -26,7 +26,7 @@ private:
 	EncoderFollower rightFollower;
 	EncoderConfig configL;
 	EncoderConfig configR;
-	*/
+
 public:
 	TestPathfinder();
 	void Initialize();

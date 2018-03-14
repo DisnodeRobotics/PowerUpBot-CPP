@@ -23,32 +23,51 @@ void TestPathfinder::Initialize()
 	points[2] = p3;
 
 	TrajectoryCandidate candidate;
-	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_LOW, 0.001, 15.0, 10.0, 60.0, &candidate);
+	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_LOW, 0.001, 10.0, 10.0, 60.0, &candidate);
 
-	int length = candidate.length;
+	length = candidate.length;
 	Segment *trajectory = new Segment[length];
 	std::cout << "Generating... " << std::endl;
 	pathfinder_generate(&candidate, trajectory);
 	std::cout << "Mofiying... " << std::endl;
-	Segment *leftTrajectory = new Segment[length];
-	Segment *rightTrajectory = new Segment[length];
+	
+	leftTrajectory.reset(new Segment[length]);
+	rightTrajectory.reset(new Segment[length]);
+	
 
-	double wheelbase_width = 0.6;
+	pathfinder_modify_tank(trajectory, length, leftTrajectory.get(), rightTrajectory.get(), wheelbase_width);
 
-	pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, wheelbase_width);
-	std::cout << "Example Point: " << std::endl << "X/Y: " << leftTrajectory[5].x << "/" << leftTrajectory[1].y << std::endl
-		<< "Accel: " << leftTrajectory[1].acceleration<< std::endl
-		<< "Vel: " << leftTrajectory[1].velocity << std::endl
-		<< "Pos: " << leftTrajectory[1].position << std::endl;
 	delete[] points;
 	delete[] trajectory;
-	delete[] leftTrajectory;
-	delete[] rightTrajectory;
+	
 	
 }
 
 void TestPathfinder::Execute() 
 {
+	leftFollower.last_error = 0;
+	leftFollower.segment = 0;
+	leftFollower.finished = 0;
+
+	rightFollower.last_error = 0;
+	rightFollower.segment = 0;
+	rightFollower.finished = 0;
+
+
+	configL = { Robot::drivetrain->GetEncoderLDistance(), ticks_per_rev, wheel_circumference, 1.0,0.0,0.0,1.0 / 10, 0.0 };
+	configR = { Robot::drivetrain->GetEncoderRDistance(), ticks_per_rev, wheel_circumference, 1.0,0.0,0.0,1.0 / 10, 0.0 };
+
+	double l = pathfinder_follow_encoder(configL, &leftFollower, leftTrajectory.get(), length, Robot::drivetrain->GetEncoderLDistance());
+	double r = pathfinder_follow_encoder(configR, &rightFollower, rightTrajectory.get(), length, Robot::drivetrain->GetEncoderRDistance());
+
+	double gyro = RoboMap::navX->GetFusedHeading();
+
+	double desired = r2d(leftFollower.heading);
+	double dif = desired - gyro;
+	double turn = 0.8 * (-1.0, 80.0) * dif;
+
+	RoboMap::sgroupDriveL->Set(l + turn);
+	RoboMap::sgroupDriveR->Set(r - turn);
 	//std::cout << "Running... " << std::endl;
 
 
@@ -65,6 +84,7 @@ bool TestPathfinder::IsFinished()
 
 void TestPathfinder::End()
 {
+	
 	printf("Info: End auto driving.\n");
 	Robot::drivetrain->SetTankDrive(0.0f, 0.0f);
 
@@ -72,6 +92,7 @@ void TestPathfinder::End()
 
 void TestPathfinder::Interrupted() 
 {
+	
 	printf("Info: End auto driving.\n");
 	Robot::drivetrain->SetTankDrive(0.0f, 0.0f);
 	
