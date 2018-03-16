@@ -17,8 +17,8 @@ OI::OI()
 	intakeInButton.reset(new JoystickButton(driverJoyboyRight.get(), 1));
 	intakeOutButton.reset(new JoystickButton(driverJoyboyRight.get(), 2));
 
-	intakeInButton.get()->WhileHeld(new IntakeBinary(true));
-	intakeOutButton.get()->WhileHeld(new IntakeBinary(false));
+	intakeInButton.get()->WhenPressed(new IntakeBinary(true));
+	intakeOutButton.get()->WhenPressed(new IntakeBinary(false));
 
 	intakeLockButton.reset(new JoystickButton(driverJoyboyRight.get(), 5));
 	intakeLockButton.get()->ToggleWhenPressed(new IntakeLock());

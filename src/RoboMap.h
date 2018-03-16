@@ -17,6 +17,7 @@ public:
 
 	static std::shared_ptr<Servo> servoRelease;
 
+	static std::shared_ptr<DoubleSolenoid> solenoidIntakeLock;
 	//Sensors
 	static std::shared_ptr<AHRS> navX;
 

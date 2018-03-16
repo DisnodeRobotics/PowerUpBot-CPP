@@ -13,7 +13,7 @@ Drivetrain::Drivetrain() :
 
 	robotDrive = RoboMap::robotDrive;
 	encoderL = RoboMap::encoderLeft;
-
+	encoderR = RoboMap::encoderRight;
 	robotDrive->SetSafetyEnabled(false);
 }
 
@@ -29,7 +29,7 @@ void Drivetrain::SetTankDrive(float leftPower, float rightPower)
 
 void Drivetrain::SetArcadeDrive(float movePower, float rotatePower)
 {
-	
+	std::cout << GetEncoderRDistance() << std::endl;
 	robotDrive->ArcadeDrive(movePower, rotatePower);
 }
 
@@ -48,12 +48,12 @@ void Drivetrain::Stop() {
 
 double Drivetrain::GetEncoderLDistance()
 {
-	return encoderL->Get() / 20; //this is so we can change this later
+	return encoderL->Get() ; //this is so we can change this later
 }
 
 double Drivetrain::GetEncoderRDistance()
 {
-	return encoderR->Get() / 20;
+	return encoderR->Get() ;
 }
 
 double Drivetrain::GetAverageEncoderDistance()

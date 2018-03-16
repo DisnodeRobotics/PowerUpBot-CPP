@@ -14,18 +14,18 @@ private:
 
 	double wheelbase_width = 0.6;
 
-	double wheel_circumference = 6;
-	double max_velocity = 4;
+	double wheel_circumference = 18.49; // 6in wheel
+	double max_velocity = 5;
 
-	double encoder_ticks = 20;
-	double drive_ratio = 10.71;
+	double encoder_ticks = 40;
+	double drive_ratio = 0.107; // 10.71:1 Ratio
 	double ticks_per_rev = encoder_ticks * drive_ratio;
-
-
-	EncoderFollower leftFollower;
-	EncoderFollower rightFollower;
 	EncoderConfig configL;
 	EncoderConfig configR;
+	EncoderFollower leftFollower;
+	EncoderFollower rightFollower;
+
+	
 
 public:
 	TestPathfinder();

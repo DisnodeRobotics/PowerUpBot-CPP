@@ -1,11 +1,13 @@
 #include "IntakeBinary.h"
 #include "RoboMap.h"
 
-IntakeBinary::IntakeBinary(bool val)
+IntakeBinary::IntakeBinary(bool inVal)
 {
 	this->intakeSpark = RoboMap::sparkIntake.get();
-	this->val = val;
-
+	this->val = inVal;
+	this->solenoid = RoboMap::solenoidIntakeLock.get();
+	this->SetTimeout(0.5);
+	
 }
 
 void IntakeBinary::Initialize()
@@ -15,21 +17,26 @@ void IntakeBinary::Initialize()
 
 void IntakeBinary::Execute()
 {
+	
 	double bVal = 0;
-	if (val) {
-		bVal = 1;
+
+	DoubleSolenoid::Value solVal= DoubleSolenoid::kForward;
+
+	if (this->val == 1) {
+		solVal = DoubleSolenoid::kReverse;
 	}
-	else {
-		bVal = -0.3;
-	}
+	std::cout << solVal << std::endl;
 	intakeSpark->Set(bVal);
+	solenoid->Set(solVal);
 	Robot::victoryConnect->SendPacket(0, "command_intake_binary", "running");
 }
 
 
 
 void IntakeBinary::End() { intakeSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_intake_binary", "stopped");
+solenoid->Set(DoubleSolenoid::kOff);
 }
 
 void IntakeBinary::Interrupted() { intakeSpark->Set(0); Robot::victoryConnect->SendPacket(0, "command_intake_binary", "stopped");
+solenoid->Set(DoubleSolenoid::kOff);
 }

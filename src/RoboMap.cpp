@@ -1,4 +1,5 @@
 #include "RoboMap.h"
+#include <iostream>
 std::shared_ptr<Spark> RoboMap::sparkDriveLF;
 std::shared_ptr<Spark> RoboMap::sparkDriveLR;
 std::shared_ptr<Spark> RoboMap::sparkDriveRF;
@@ -10,6 +11,8 @@ std::shared_ptr<Spark> RoboMap::sparkIntake;
 
 std::shared_ptr<Spark> RoboMap::sparkLift;
 std::shared_ptr<Servo> RoboMap::servoRelease;
+
+std::shared_ptr<DoubleSolenoid> RoboMap::solenoidIntakeLock;
 
 //Sensors
 std::shared_ptr<AHRS> RoboMap::navX;
@@ -41,13 +44,18 @@ void RoboMap::Init()
 	sparkLift.reset(new Spark(PWMPorts::LIFT));
 
 	navX.reset(new AHRS(SPI::Port::kMXP));
+
+	std::cout << "Init Encoders..." << std::endl;
 	encoderLeft.reset(new Encoder(0, 1));
 	encoderRight.reset(new Encoder(2, 3));
-	encoderRight->SetReverseDirection(true);
+	std::cout << encoderLeft->GetGlobalError().GetMessage() << std::endl;
+	std::cout << encoderRight->GetGlobalError().GetMessage() << std::endl;
+	std::cout << "Encoders Init'd" << encoderLeft->Get() << ":" << encoderRight->Get() << std::endl;
+	encoderLeft->SetReverseDirection(true);
 
 	sgroupDriveL.reset(new SpeedControllerGroup(*sparkDriveLF, *sparkDriveLR));
 	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));
-	
+	solenoidIntakeLock.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
 
 	servoRelease.reset(new Servo(6));
 	

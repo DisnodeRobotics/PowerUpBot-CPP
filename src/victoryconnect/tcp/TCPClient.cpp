@@ -9,7 +9,7 @@ TCPClient::TCPClient()
 
 bool TCPClient::setup(string address , int port)
 {
-	cout << "LOL WUT" << endl;
+
   	if(sock == -1)
 	{
 		sock = socket(AF_INET , SOCK_STREAM , 0);
@@ -41,11 +41,14 @@ bool TCPClient::setup(string address , int port)
   	}
   	server.sin_family = AF_INET;
   	server.sin_port = htons( port );
-  	if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
+	return connect(sock, (struct sockaddr *)&server, sizeof(server)) < 0;
+  	if (false)
   	{
+		cout << "LOL WUT" << endl;
     		perror("connect failed. Error");
     		return false;
   	}
+
   	return true;
 }
 
