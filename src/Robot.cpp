@@ -1,12 +1,14 @@
 #include "WPILib.h"
-#include "Compressor.h"
+
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
 #include "Commands/LiftBinary.h"
 #include "Commands/Auto/Autonomous.h"
 #include <memory>
 #include "ctre\Phoenix.h"
+
 std::shared_ptr<Drivetrain> Robot::drivetrain;
+std::shared_ptr<Intake> Robot::intake;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<VictoryConnectClient> Robot::victoryConnect;
 
@@ -19,6 +21,7 @@ void Robot::RobotInit() {
 
 	victoryConnect.reset(new VictoryConnectClient());
 	drivetrain.reset(new Drivetrain());
+	intake.reset(new Intake());
 	
 	oi.reset(new OI());
 
@@ -94,25 +97,11 @@ void Robot::TestPeriodic()
 
 void Robot::VictoryInit() {
 	std::cout << "STARTING!" << std::endl;
-	Robot::victoryConnect->Connect("10.40.56.7");
+	Robot::victoryConnect->Connect("pi4056.local");
 	
 }
 void Robot::VictoryPeroidic()
 {
-	Robot::victoryConnect->SendPacket(0, "encoder_drive",
-		to_string(drivetrain->GetEncoderLDistance()) + " " +
-		to_string(drivetrain->GetEncoderRDistance()) + " " +
-		to_string(drivetrain->GetAverageEncoderDistance()) + " ");
-
-	//NAV X
-	Robot::victoryConnect->SendPacket(0, "navx_heading",
-		to_string(RoboMap::navX->GetFusedHeading()) + " ");
-
-
-	Robot::victoryConnect ->SendPacket(0, "motor_power", "drive_left_front " + to_string(RoboMap::sparkDriveLF->Get()));
-	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_left_rear " + to_string(RoboMap::sparkDriveLR->Get()));
-	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_right_front " + to_string(RoboMap::sparkDriveRF->Get()));
-	Robot::victoryConnect->SendPacket(0, "motor_power", "drive_right_rear " + to_string(RoboMap::sparkDriveRR->Get()));
 
 	
 }

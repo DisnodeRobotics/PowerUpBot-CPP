@@ -2,22 +2,27 @@
 
 VictoryConnectClient::VictoryConnectClient()
 {
-    tcpClient = new TCPClient();
-    logger.SetClass("VictoryConnectClient");
+	tcpClient = new TCPClient();
+
+}
+void VictoryConnectClient::AddSubsystem(std::shared_ptr<NetworkSubsystem> system)
+{
+	subsystems.push_back(system);
 }
 
 bool VictoryConnectClient::Connect(string host)
 {
     do
     {   
-        logger.Info("Connect", "Connecting to server at: " + host);
+
+        Logger::Info("VictoryConnectClient", "Connect", "Connecting to server at: " + host);
         
 
-        if (tcpClient->setup("10.40.56.7", 5805))
+        if (tcpClient->setup("pi4056.local", 5800))
         {
-            logger.Success("Connect", "Connected to server!");
+			Logger::Success("Connect", "Connected to server!");
            // tcpClient->Send("0 0 id victory_cv");
-            logger.Info("Connect", "Sent ID Packet.");
+			Logger::Info("Connect", "Sent ID Packet.");
             connected = true;
             //thread tcpRecTread(VictoryConnectClient::recv_loop,tcpClient);
             //tcpRecTread.detach();
@@ -25,7 +30,7 @@ bool VictoryConnectClient::Connect(string host)
         }
         else
         {
-            logger.Error("Connect", "Failed to connect. Retrying in 3s");
+			Logger::Error("VictoryConnectClient", "Connect", "Failed to connect. Retrying in 3s");
             connected = false;
 
           //  sleep(3.0);
@@ -36,7 +41,7 @@ bool VictoryConnectClient::Connect(string host)
 
 bool VictoryConnectClient::SendPacket(int type, string topic, string value){
 	if (connected) {
-		return tcpClient->Send("0 " + to_string(type) + " " + topic + " " + value + "**");
+		return tcpClient->Send("0 " + to_string(type) + " " + topic + " {" + value + "}");
 	}
 	else {
 		return false;
@@ -46,9 +51,8 @@ bool VictoryConnectClient::SendPacket(int type, string topic, string value){
 
 void VictoryConnectClient::recv_loop(TCPClient *client)
 {
-    Logger logger;
-    logger.SetClass("VictoryConnectClient-Static");
-    logger.Info("recv_loop", "Starting Recieve Loop.");
+
+
     while (1)
     {
 
@@ -62,3 +66,15 @@ void VictoryConnectClient::recv_loop(TCPClient *client)
     }
 }
 
+void VictoryConnectClient::tick_loop(TCPClient *client, std::vector<std::shared_ptr<NetworkSubsystem>> *systems)
+{
+
+	while (1)
+	{
+		for (int i = 0; i < systems->size(); i++;) {
+			
+		}
+		
+		sleep(0.1);
+	}
+}

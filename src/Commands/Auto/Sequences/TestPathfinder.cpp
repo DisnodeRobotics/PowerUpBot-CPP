@@ -23,7 +23,7 @@ void TestPathfinder::Initialize()
 	points[2] = p3;
 
 	TrajectoryCandidate candidate;
-	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_LOW, 0.001, max_velocity, 10.0, 60.0, &candidate);
+	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_LOW, 0.02, DriveProfile::MAX_VELOCITY, 10.0, 60.0, &candidate);
 
 	length = candidate.length;
 	Segment *trajectory = new Segment[length];
@@ -36,7 +36,7 @@ void TestPathfinder::Initialize()
 	rightTrajectory.reset(new Segment[length]);
 	
 
-	pathfinder_modify_tank(trajectory, length, leftTrajectory.get(), rightTrajectory.get(), wheelbase_width);
+	pathfinder_modify_tank(trajectory, length, leftTrajectory.get(), rightTrajectory.get(), DriveProfile::WHEELBASE_WIDTH);
 	leftFollower.last_error = 0;
 	leftFollower.segment = 0;
 	leftFollower.finished = 0;
@@ -46,8 +46,8 @@ void TestPathfinder::Initialize()
 	rightFollower.finished = 0;
 
 
-	configL = { Robot::drivetrain->GetEncoderLDistance(), ticks_per_rev, wheel_circumference, 1.0,0.0,0.0,1.0 / max_velocity, 0 };
-	configR = { Robot::drivetrain->GetEncoderRDistance(), ticks_per_rev, wheel_circumference, 1.0,0.0,0.0,1.0 / max_velocity, 0 };
+	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::TICKS_PER_REV, DriveProfile::WHEEL_CIRCUMFERENCE, 1.0,0.0,0.0,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::TICKS_PER_REV, DriveProfile::WHEEL_CIRCUMFERENCE, 1.0,0.0,0.0,1.0 / DriveProfile::MAX_VELOCITY, 0 };
 
 	delete[] points;
 	delete[] trajectory;

@@ -13,6 +13,7 @@ std::shared_ptr<Spark> RoboMap::sparkLift;
 std::shared_ptr<Servo> RoboMap::servoRelease;
 
 std::shared_ptr<DoubleSolenoid> RoboMap::solenoidIntakeLock;
+std::shared_ptr<DoubleSolenoid> RoboMap::solenoidIntakeDeploy;
 
 //Sensors
 std::shared_ptr<AHRS> RoboMap::navX;
@@ -55,7 +56,9 @@ void RoboMap::Init()
 
 	sgroupDriveL.reset(new SpeedControllerGroup(*sparkDriveLF, *sparkDriveLR));
 	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));
+
 	solenoidIntakeLock.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
+	solenoidIntakeDeploy.reset(new DoubleSolenoid(PCMPorts::INTAKE_DEPLOY_FORWARD, PCMPorts::INTAKE_DEPLOY_REVERSE));
 
 	servoRelease.reset(new Servo(6));
 	

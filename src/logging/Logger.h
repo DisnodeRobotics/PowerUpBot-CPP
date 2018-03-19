@@ -5,14 +5,13 @@
 
 using namespace std;
 class Logger{
-    private:
-        string m_className = "GenericClass";
+
+
     public:
-		Logger();
-        void SetClass(string className);
+
         
-        void Info(string functionName, string toLog);
-        void Warning(string functionName, string toLog);
-        void Error(string functionName, string toLog);
-        void Success(string functionName, string toLog);
+        static void Info(string className, string functionName, string toLog);
+		static void Warning(string className, string functionName, string toLog);
+		static void Error(string className, string functionName, string toLog);
+		static void Success(string className, string functionName, string toLog);
 };
