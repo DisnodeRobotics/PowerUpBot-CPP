@@ -17,6 +17,7 @@ void DriveJoystick::Initialize()
 void DriveJoystick::Execute()
 {
 	//std::cout<<"Encoder: "<< Robot::drivetrain->GetEncoderLDistance() << std::endl;
+	
 	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriverLeft()->GetY(), Robot::oi->getDriverRight()->GetX());
 }
 

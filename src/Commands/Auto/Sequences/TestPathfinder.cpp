@@ -17,15 +17,25 @@ void TestPathfinder::Initialize()
 
 	Waypoint *points = new Waypoint[POINT_LENGTH];
 
-	Waypoint p1 = { 0, 0 , d2r(0) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-	Waypoint p2 = { 1,3,d2r(0) };             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
-	//Waypoint p3 = { 10,0, 0 };             // Waypoint @ x= 2, y= 4, exit angle= 0 radians
+	Waypoint p1 = { 0, 0 , d2r(30) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
+	Waypoint p2 = { 5, 1,0};             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
+	Waypoint p3 = { 0, 1,  0 };
+
 	points[0] = p1;
 	points[1] = p2;
-	//points[2] = p3;
+	points[2] = p3;
+
 
 	TrajectoryCandidate candidate;
-	pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, 0.015, DriveProfile::MAX_VELOCITY, 10.0, 60.0, &candidate);
+	pathfinder_prepare(points, 
+		POINT_LENGTH, 
+		FIT_HERMITE_CUBIC, 
+		PATHFINDER_SAMPLES_LOW, 
+		0.015, // time
+		DriveProfile::MAX_VELOCITY , 
+		DriveProfile::MAX_ACCELERATION,
+		DriveProfile::MAX_JERK, 
+		&candidate);
 
 	length = candidate.length;
 	Segment *trajectory = new Segment[length];
@@ -48,8 +58,8 @@ void TestPathfinder::Initialize()
 	rightFollower.finished = 0;
 
 
-	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::TICKS_PER_REV, DriveProfile::WHEEL_CIRCUMFERENCE ,0.8,0.0,0.0,1.0 / DriveProfile::MAX_VELOCITY, 0 };
-	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::TICKS_PER_REV, DriveProfile::WHEEL_CIRCUMFERENCE, 0.8,0.0,0.0,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV ,1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0};
+	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV, 1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0};
 
 	delete[] points;
 	delete[] trajectory;
@@ -64,23 +74,31 @@ void TestPathfinder::Execute()
 
 	double l = pathfinder_follow_encoder(configL, &leftFollower, leftTrajectory.get(), length, Robot::drivetrain->GetEncoderLDistance());
 	double r = pathfinder_follow_encoder(configR, &rightFollower, rightTrajectory.get(), length, Robot::drivetrain->GetEncoderRDistance());
-
+	
+	
 	double gyro = RoboMap::navX->GetFusedHeading();
-	
+	if (gyro > 180) {
+		gyro -= 360;
+	}
+	double desired = r2d(leftFollower.heading);
 
-	double desired = r2d(rightFollower.heading);
 	double dif = desired - gyro;
-	
-	double turn = 0.8 * (-1.0 / 80.0) * dif ;
 
-
+	double turn = 3.0 * (-1.0 / 80.0) * dif * -1 ;
+	l += turn;
+	r -= turn;
 	
 	//Robot::drivetrain->SetTankDrive(l + turn, r - turn);
-	RoboMap::sgroupDriveL->Set(l + turn);
-	RoboMap::sgroupDriveR->Set( r - turn);
-
-	
-	std::cout << "Pathfinder: " << "L: " << l << " R: " << r  << " Gyro: " << gyro << " Desired: " << desired << " Turn: " << turn << " Dif: " << dif << std::endl;
+	RoboMap::sgroupDriveL->Set(l );
+	RoboMap::sgroupDriveR->Set( -r );
+	double accel = RoboMap::navX->GetRawAccelX();
+	if (accel > maxaccel) {
+		maxaccel = accel;
+	}
+	//std::cout << "Accel:" << RoboMap::navX->GetRawAccelX() << std::endl;
+	//std::cout << "Ve: " << RoboMap::navX->GetVelocityX() << std::endl;
+	 
+	std::cout << "Pathfinder: " << "L: " << l << " R: " << r << " Gyro/Target: " << gyro << "/" << desired << " Turn: " << turn << " Last Error: " << leftFollower.last_error << " Encoders: " << Robot::drivetrain->GetEncoderLDistance() <<"/"<<Robot::drivetrain->GetEncoderRDistance() << std::endl;
 	//Robot::drivetrain->SetTankDrive(0.5,0.5);
 
 }

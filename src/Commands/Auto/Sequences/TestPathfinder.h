@@ -18,7 +18,7 @@ private:
 	EncoderFollower leftFollower;
 	EncoderFollower rightFollower;
 
-	
+	double maxaccel;
 
 public:
 	TestPathfinder();

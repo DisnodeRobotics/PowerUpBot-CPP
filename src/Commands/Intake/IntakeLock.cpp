@@ -17,16 +17,32 @@ void IntakeLock::Initialize()
 void IntakeLock::Execute()
 {
 	Robot::intake->SetLock(m_lock);
-	Robot::victoryConnect->SendPacket(0, "command_intake_lock", "running;"+to_string(m_lock)+";");
+	if (m_lock) {
+		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "running;true;");
+	}
+	else {
+		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "running;false;");
+	}
+	
 }
 
 
 void IntakeLock::End() 
 { 
-	Robot::victoryConnect->SendPacket(0, "command_intake_lock", "ended;no_data;" + to_string(m_lock) + ";");
+	if (m_lock) {
+		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "End;true;");
+	}
+	else {
+		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "End;false;");
+	}
 }
 
 void IntakeLock::Interrupted()
 { 
-	Robot::victoryConnect->SendPacket(0, "command_intake_lock", "interrupted;" + to_string(m_lock) + ";");
+	if (m_lock) {
+		Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "Interrupted;true;");
+	}
+	else {
+		Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "Interrupted;false;");
+	}
 }

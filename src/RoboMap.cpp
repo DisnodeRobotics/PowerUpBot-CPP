@@ -55,13 +55,13 @@ void RoboMap::Init()
 	std::cout << "Encoders Init'd" << encoderLeft->Get() << ":" << encoderRight->Get() << std::endl;
 
 	encoderLeft->SetReverseDirection(true);
-;	encoderRight->SetReverseDirection(true);
+;	encoderRight->SetReverseDirection(false);
 
 	sgroupDriveL.reset(new SpeedControllerGroup(*sparkDriveLF, *sparkDriveLR));
 	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));
 
 	solenoidIntakeLock.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
-	solenoidIntakeDeploy.reset(new DoubleSolenoid(PCMPorts::INTAKE_DEPLOY_FORWARD, PCMPorts::INTAKE_DEPLOY_REVERSE));
+	solenoidIntakeDeploy.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
 
 	servoRelease.reset(new Servo(6));
 	

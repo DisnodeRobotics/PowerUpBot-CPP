@@ -31,9 +31,11 @@ void Robot::RobotInit() {
 	drivejoystick.reset(new DriveJoystick());
 	autonomousCommand.reset(new Autonomous());
 
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	//CameraServer::GetInstance()->StartAutomaticCapture();
 
+	SmartDashboard::PutData(RoboMap::navX.get());
 
+	VictoryInit();
 
 
 }
@@ -80,7 +82,7 @@ void Robot::TeleopPeriodic()
 {
 	Scheduler::GetInstance()->Run();
 
-	
+	Robot::victoryConnect->SendPacket(0, "navx", "connected :P;" + to_string(RoboMap::navX->GetFusedHeading()));
 	//RoboMap::solenoidPlatform1->Set(DoubleSolenoid::kForward);
 }
 

@@ -8,10 +8,17 @@ private:
 	std::shared_ptr<Joystick> driverJoyboyRight;
 	std::shared_ptr<JoystickButton> liftUpButton;
 	std::shared_ptr<JoystickButton> liftDownButton;
+
 	std::shared_ptr<JoystickButton> intakeInButton;
 	std::shared_ptr<JoystickButton> intakeOutButton;
+
 	std::shared_ptr<JoystickButton> intakeLockButton;
-	std::shared_ptr<JoystickButton> releaseButton;
+	std::shared_ptr<JoystickButton> intakeUnlockButton;
+
+	std::shared_ptr<JoystickButton> intakeDeployButton;
+	std::shared_ptr<JoystickButton> intakeFoldButton;
+
+
 
 	
 public:
