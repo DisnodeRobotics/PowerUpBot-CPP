@@ -5,10 +5,7 @@ VictoryConnectClient::VictoryConnectClient()
 	tcpClient = new TCPClient();
 
 }
-void VictoryConnectClient::AddSubsystem(std::shared_ptr<NetworkSubsystem> system)
-{
-	subsystems.push_back(system);
-}
+
 
 bool VictoryConnectClient::Connect(string host)
 {
@@ -20,9 +17,9 @@ bool VictoryConnectClient::Connect(string host)
 
         if (tcpClient->setup("pi4056.local", 5800))
         {
-			Logger::Success("Connect", "Connected to server!");
+			Logger::Success("VictoryConnectClient", "Connect", "Connected to server!");
            // tcpClient->Send("0 0 id victory_cv");
-			Logger::Info("Connect", "Sent ID Packet.");
+			Logger::Info("VictoryConnectClient", "Connect", "Sent ID Packet.");
             connected = true;
             //thread tcpRecTread(VictoryConnectClient::recv_loop,tcpClient);
             //tcpRecTread.detach();
@@ -64,17 +61,4 @@ void VictoryConnectClient::recv_loop(TCPClient *client)
         }
         sleep(0.1);
     }
-}
-
-void VictoryConnectClient::tick_loop(TCPClient *client, std::vector<std::shared_ptr<NetworkSubsystem>> *systems)
-{
-
-	while (1)
-	{
-		for (int i = 0; i < systems->size(); i++;) {
-			
-		}
-		
-		sleep(0.1);
-	}
 }

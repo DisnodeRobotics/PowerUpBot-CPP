@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ItemGroup Label="Filters">
     <Filter Include="Source Files">
@@ -22,6 +22,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Intake\IntakeLock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\IntakeBinary.cpp">
@@ -48,22 +51,19 @@
     <ClCompile Include="src\Subsystems\Drivetrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\victoryconnect\tcp\TCPClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\Intake\IntakeLock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Subsystems\Intake.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Subsystems\NavX.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Subsystems\NetworkSubsystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Subsystems\NavX.cpp">
+    <ClCompile Include="src\victoryconnect\tcp\TCPClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,16 +77,25 @@
     <ClInclude Include="src\Commands\Drive\DriveJoystick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Commands\Intake\IntakeLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\Commands\IntakeBinary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\LiftBinary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Commands\Paths\Profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\Commands\ReleaseOnce.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\logging\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OI.h">
@@ -104,6 +113,15 @@
     <ClInclude Include="src\Subsystems\Drivetrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Subsystems\Intake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Subsystems\NavX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Subsystems\NetworkSubsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\termcolor\termcolor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,21 +129,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\victoryconnect\VictoryConnectClient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Commands\Paths\Profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Commands\Intake\IntakeLock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Subsystems\Intake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Subsystems\NetworkSubsystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Subsystems\NavX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

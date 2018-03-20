@@ -6,7 +6,7 @@
 #include <thread>
 #include <string.h>
 #include <vector>
-#include "Subsystems/NetworkSubsystem.h"
+
 #include "../logging/Logger.h"
 using namespace std;
 
@@ -24,12 +24,11 @@ class VictoryConnectClient
     }
     static void recv_loop(TCPClient *client);
 
-	static void tick_loop(TCPClient *client, std::vector<std::shared_ptr<NetworkSubsystem>> *systems);
-	std::vector<std::shared_ptr<NetworkSubsystem>> subsystems;
+	
   public:
 
     VictoryConnectClient();
-	void AddSubsystem(std::shared_ptr<NetworkSubsystem> system);
+	
     bool Connect(string host);
     bool SendPacket(int type, string topic, string value);
     bool isConnected();

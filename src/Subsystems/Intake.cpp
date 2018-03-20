@@ -40,6 +40,3 @@ void Intake::SetLock(bool val)
 }
 
 
-Intake::~Intake()
-{
-}

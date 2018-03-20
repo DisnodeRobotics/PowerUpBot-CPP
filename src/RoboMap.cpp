@@ -43,16 +43,19 @@ void RoboMap::Init()
 
 
 	sparkLift.reset(new Spark(PWMPorts::LIFT));
-
+	std::cout << "Init NavX..." << std::endl;
 	navX.reset(new AHRS(SPI::Port::kMXP));
-
+	std::cout << "Navx Connected: " << navX->IsConnected() << std::endl;
+	std::cout << "Navx Error: " << navX->GetError().GetMessage() << std::endl;
 	std::cout << "Init Encoders..." << std::endl;
 	encoderLeft.reset(new Encoder(0, 1));
 	encoderRight.reset(new Encoder(2, 3));
 	std::cout << encoderLeft->GetGlobalError().GetMessage() << std::endl;
 	std::cout << encoderRight->GetGlobalError().GetMessage() << std::endl;
 	std::cout << "Encoders Init'd" << encoderLeft->Get() << ":" << encoderRight->Get() << std::endl;
+
 	encoderLeft->SetReverseDirection(true);
+;	encoderRight->SetReverseDirection(true);
 
 	sgroupDriveL.reset(new SpeedControllerGroup(*sparkDriveLF, *sparkDriveLR));
 	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));

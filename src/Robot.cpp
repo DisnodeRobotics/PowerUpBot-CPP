@@ -33,9 +33,6 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture();
 
-	NetworkTable::SetTeam(4056);
-	thread vicInitThread(Robot::VictoryInit);
-	vicInitThread.detach();
 
 
 

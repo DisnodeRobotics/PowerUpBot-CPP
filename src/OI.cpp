@@ -1,7 +1,7 @@
 #include "OI.h"
 #include "Commands/LiftBinary.h"
 #include "Commands/IntakeBinary.h"
-#include "Commands/IntakeLock.h"
+#include "Commands/Intake/IntakeLock.h"
 #include "Commands/ReleaseOnce.h"
 OI::OI()
 {
@@ -14,14 +14,13 @@ OI::OI()
 	liftUpButton.get()->WhileHeld(new LiftBinary(true));
 	liftDownButton.get()->WhileHeld(new LiftBinary(false));
 
-	intakeInButton.reset(new JoystickButton(driverJoyboyRight.get(), 1));
-	intakeOutButton.reset(new JoystickButton(driverJoyboyRight.get(), 2));
+	intakeInButton.reset(new JoystickButton(driverJoyboyLeft.get(), 1));
+	intakeOutButton.reset(new JoystickButton(driverJoyboyLeft.get(), 2));
 
-	intakeInButton.get()->WhenPressed(new IntakeBinary(true));
-	intakeOutButton.get()->WhenPressed(new IntakeBinary(false));
+	intakeInButton.get()->WhenPressed(new IntakeLock(true));
+	intakeOutButton.get()->WhenPressed(new IntakeLock(false));
 
-	intakeLockButton.reset(new JoystickButton(driverJoyboyRight.get(), 5));
-	intakeLockButton.get()->ToggleWhenPressed(new IntakeLock());
+	
 
 	releaseButton.reset(new JoystickButton(driverJoyboyRight.get(), 5));
 	releaseButton.get()->WhenPressed(new ReleaseOnce());

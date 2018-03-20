@@ -29,7 +29,7 @@ void Drivetrain::SetTankDrive(float leftPower, float rightPower)
 
 void Drivetrain::SetArcadeDrive(float movePower, float rotatePower)
 {
-	std::cout << GetEncoderRDistance() << std::endl;
+	
 	robotDrive->ArcadeDrive(movePower, rotatePower);
 }
 

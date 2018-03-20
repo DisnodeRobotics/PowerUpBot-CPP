@@ -12,6 +12,6 @@ namespace PWMPorts {
 namespace PCMPorts{
 	const int INTAKE_LOCK_FORWARD = 0;
 	const int INTAKE_LOCK_REVERSE = 1;
-	const int INTAKE_DEPLOY_FORWARD = 7;
-	const int INTAKE_DEPLOY_REVERSE = 8;
+	const int INTAKE_DEPLOY_FORWARD = 6;
+	const int INTAKE_DEPLOY_REVERSE = 7;
 }
