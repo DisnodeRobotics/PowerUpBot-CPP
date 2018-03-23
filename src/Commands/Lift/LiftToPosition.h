@@ -4,14 +4,14 @@
 #include <Robot.h>
 
 
-class IntakeDeploy : public Command {
+class LiftToPosition : public Command {
 private:
 
-	
-	bool m_deploy;
+
+	bool m_up;
 
 public:
-	IntakeDeploy(bool deploy);
+	LiftToPosition(bool up);
 	void Initialize();
 	void Execute();
 	bool IsFinished() { return IsTimedOut(); }

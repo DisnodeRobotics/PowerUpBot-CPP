@@ -4,14 +4,16 @@
 #include <Commands/Command.h>
 #include "RoboMap.h"
 #include <Subsystems/Drivetrain.h>
+#include <Subsystems/Lift.h>
 #include <Subsystems/Intake.h>
 #include <victoryconnect\VictoryConnectClient.h>
 class Robot : public IterativeRobot {
 public:
 	std::unique_ptr<Command> drivejoystick;
-
+	std::unique_ptr<Command> liftjoystick;
 	static std::shared_ptr<Drivetrain> drivetrain;
 	static std::shared_ptr<Intake> intake;
+	static std::shared_ptr<Lift> lift;
 
 
 	static std::unique_ptr<OI> oi;

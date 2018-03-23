@@ -18,8 +18,8 @@ void TestPathfinder::Initialize()
 	Waypoint *points = new Waypoint[POINT_LENGTH];
 
 	Waypoint p1 = { 0, 0 , d2r(30) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-	Waypoint p2 = { 5, 1,0};             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
-	Waypoint p3 = { 0, 1,  0 };
+	Waypoint p2 = { 3.5, 2,d2r(270)};             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
+	Waypoint p3 = { 5, 3.5,0 };
 
 	points[0] = p1;
 	points[1] = p2;

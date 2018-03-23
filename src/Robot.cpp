@@ -2,13 +2,15 @@
 
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
-#include "Commands/LiftBinary.h"
+#include "Commands/Lift/LiftJoystick.h"
+
 #include "Commands/Auto/Autonomous.h"
 #include <memory>
 #include "ctre\Phoenix.h"
 
 std::shared_ptr<Drivetrain> Robot::drivetrain;
 std::shared_ptr<Intake> Robot::intake;
+std::shared_ptr<Lift> Robot::lift;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<VictoryConnectClient> Robot::victoryConnect;
 
@@ -20,8 +22,10 @@ void Robot::RobotInit() {
 	
 
 	victoryConnect.reset(new VictoryConnectClient());
+
 	drivetrain.reset(new Drivetrain());
 	intake.reset(new Intake());
+	lift.reset(new Lift());
 	
 	oi.reset(new OI());
 
@@ -29,13 +33,15 @@ void Robot::RobotInit() {
 	printf("Zeroed Yaw in init!\n");
 	
 	drivejoystick.reset(new DriveJoystick());
+	liftjoystick.reset(new LiftJoystick());
 	autonomousCommand.reset(new Autonomous());
 
-	//CameraServer::GetInstance()->StartAutomaticCapture();
+	CameraServer::GetInstance()->StartAutomaticCapture();
+	
 
 	SmartDashboard::PutData(RoboMap::navX.get());
 
-	VictoryInit();
+	//VictoryInit();
 
 
 }
@@ -73,7 +79,7 @@ void Robot::TeleopInit()
 	printf("Info: Reset NavX\n");
 
 	drivejoystick->Start();
-
+	liftjoystick->Start();
 }
 
 

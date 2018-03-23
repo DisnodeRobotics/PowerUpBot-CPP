@@ -12,12 +12,12 @@ IntakeDeploy::IntakeDeploy(bool deploy) : Command()
 }
 void IntakeDeploy::Initialize()
 {
-	Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "init;no_data;" + to_string(m_lock) + ";");
+	Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "init;no_data;" + to_string(m_deploy) + ";");
 	Robot::intake->SetDeploy(false);
 }
 void IntakeDeploy::Execute()
 {
-	Robot::intake->SetDeploy(m_lock);
+	Robot::intake->SetDeploy(m_deploy);
 	if (m_deploy) {
 		Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "running;true;");
 	}
@@ -30,7 +30,7 @@ void IntakeDeploy::Execute()
 
 void IntakeDeploy::End()
 {
-	if (m_lock) {
+	if (m_deploy) {
 		Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "End;true;");
 	}
 	else {
@@ -40,7 +40,7 @@ void IntakeDeploy::End()
 
 void IntakeDeploy::Interrupted()
 {
-	if (m_lock) {
+	if (m_deploy) {
 		Robot::victoryConnect->SendPacket(0, "command_intake_deploy", "Interrupted;true;");
 	}
 	else {

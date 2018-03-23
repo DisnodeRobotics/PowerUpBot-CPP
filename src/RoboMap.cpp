@@ -23,6 +23,7 @@ std::shared_ptr<AnalogInput> RoboMap::ultraBottomL;
 std::shared_ptr<AnalogInput> RoboMap::ultraBottomR;
 
 std::shared_ptr<Encoder> RoboMap::encoderLeft;
+std::shared_ptr<Encoder> RoboMap::encoderLift;
 std::shared_ptr<Encoder> RoboMap::encoderRight;
 
 //Software
@@ -50,6 +51,8 @@ void RoboMap::Init()
 	std::cout << "Init Encoders..." << std::endl;
 	encoderLeft.reset(new Encoder(0, 1));
 	encoderRight.reset(new Encoder(2, 3));
+	encoderLift.reset(new Encoder(4, 5));
+	
 	std::cout << encoderLeft->GetGlobalError().GetMessage() << std::endl;
 	std::cout << encoderRight->GetGlobalError().GetMessage() << std::endl;
 	std::cout << "Encoders Init'd" << encoderLeft->Get() << ":" << encoderRight->Get() << std::endl;
@@ -61,7 +64,7 @@ void RoboMap::Init()
 	sgroupDriveR.reset(new SpeedControllerGroup(*sparkDriveRF, *sparkDriveRR));
 
 	solenoidIntakeLock.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
-	solenoidIntakeDeploy.reset(new DoubleSolenoid(PCMPorts::INTAKE_LOCK_FORWARD, PCMPorts::INTAKE_LOCK_REVERSE));
+	solenoidIntakeDeploy.reset(new DoubleSolenoid(PCMPorts::INTAKE_DEPLOY_FORWARD ,PCMPorts::INTAKE_DEPLOY_REVERSE));
 
 	servoRelease.reset(new Servo(6));
 	

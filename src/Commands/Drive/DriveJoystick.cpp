@@ -5,20 +5,30 @@ DriveJoystick::DriveJoystick() :
 	Command()
 {
 	Requires(Robot::drivetrain.get());
-
+	//Requires(Robot::intake.get());
 	leftPos = 0.0f;
 	rightPos = 0.0f;
 }
 void DriveJoystick::Initialize()
 {
 	Robot::drivetrain->SetArcadeDrive(0.0f, 0.0f);
+
+	RoboMap::sparkLift->Set(0);
 }
 
 void DriveJoystick::Execute()
 {
-	//std::cout<<"Encoder: "<< Robot::drivetrain->GetEncoderLDistance() << std::endl;
+	std::cout<<"Encoder: "<< RoboMap::encoderLift->Get() << std::endl;
 	
 	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriverLeft()->GetY(), Robot::oi->getDriverRight()->GetX());
+	double lift = -Robot::oi->getLiftJoystick()->GetY();
+
+	if (lift < 0) {
+		lift = lift * 0.25;
+	}
+
+	RoboMap::sparkLift->Set(lift);
+
 }
 
 bool DriveJoystick::IsFinished()

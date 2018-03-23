@@ -30,14 +30,15 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\Commands\Lift\LiftToPosition.cpp" />
+    <ClCompile Include="src\Commands\Lift\LiftJoystick.cpp" />
+    <ClCompile Include="src\Subsystems\Lift.cpp" />
     <ClCompile Include="src\Commands\Intake\IntakeDeploy.cpp" />
     <ClCompile Include="src\Commands\Auto\Autonomous.cpp" />
     <ClCompile Include="src\Commands\Auto\Sequences\TestPathfinder.cpp" />
     <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp" />
     <ClCompile Include="src\Commands\Intake\IntakeLock.cpp" />
-    <ClCompile Include="src\Commands\IntakeBinary.cpp" />
-    <ClCompile Include="src\Commands\LiftBinary.cpp" />
-    <ClCompile Include="src\Commands\ReleaseOnce.cpp" />
+    <ClCompile Include="src\Commands\Intake\IntakeWheel.cpp" />
     <ClCompile Include="src\logging\Logger.cpp" />
     <ClCompile Include="src\OI.cpp" />
     <ClCompile Include="src\RoboMap.cpp" />
@@ -48,15 +49,16 @@
     <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp" />
   </ItemGroup>
   <ItemGroup Label="Headers">
+    <ClInclude Include="src\Commands\Lift\LiftToPosition.h" />
+    <ClInclude Include="src\Commands\Lift\LiftJoystick.h" />
+    <ClInclude Include="src\Subsystems\Lift.h" />
     <ClInclude Include="src\Commands\Intake\IntakeDeploy.h" />
     <ClInclude Include="src\Commands\Auto\Autonomous.h" />
     <ClInclude Include="src\Commands\Auto\Sequences\TestPathfinder.h" />
     <ClInclude Include="src\Commands\Drive\DriveJoystick.h" />
     <ClInclude Include="src\Commands\Intake\IntakeLock.h" />
-    <ClInclude Include="src\Commands\IntakeBinary.h" />
-    <ClInclude Include="src\Commands\LiftBinary.h" />
+    <ClInclude Include="src\Commands\Intake\IntakeWheel.h" />
     <ClInclude Include="src\Commands\Paths\Profile.h" />
-    <ClInclude Include="src\Commands\ReleaseOnce.h" />
     <ClInclude Include="src\logging\Logger.h" />
     <ClInclude Include="src\MyHeader.h" />
     <ClInclude Include="src\OI.h" />

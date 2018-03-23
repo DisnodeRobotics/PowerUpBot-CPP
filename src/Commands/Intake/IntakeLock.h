@@ -7,7 +7,7 @@
 class IntakeLock : public Command {
 private:
 
-	DoubleSolenoid* m_solenoid;
+	
 	bool m_lock;
 
 public:

@@ -1,17 +1,17 @@
+
 #pragma once
 
 #include <Commands/Command.h>
 #include <Robot.h>
 
 
-class IntakeDeploy : public Command {
+class IntakeWheel : public Command {
 private:
-
+	double val;
 	
-	bool m_deploy;
 
 public:
-	IntakeDeploy(bool deploy);
+	IntakeWheel(double val);
 	void Initialize();
 	void Execute();
 	bool IsFinished() { return IsTimedOut(); }

@@ -28,6 +28,7 @@ public:
 
 	static std::shared_ptr<Encoder> encoderLeft;
 	static std::shared_ptr<Encoder> encoderRight;
+	static std::shared_ptr<Encoder> encoderLift;
 
 	//Software
 	static std::shared_ptr<DifferentialDrive> robotDrive;

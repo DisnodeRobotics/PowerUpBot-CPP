@@ -27,15 +27,6 @@
     <ClCompile Include="src\Commands\Intake\IntakeLock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\IntakeBinary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\LiftBinary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\ReleaseOnce.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\logging\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +54,18 @@
     <ClCompile Include="src\Commands\Intake\IntakeDeploy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\Intake\IntakeWheel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Subsystems\Lift.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Lift\LiftJoystick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Lift\LiftToPosition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup Label="Headers">
     <ClInclude Include="src\Commands\Auto\Autonomous.h">
@@ -77,16 +80,7 @@
     <ClInclude Include="src\Commands\Intake\IntakeLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Commands\IntakeBinary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Commands\LiftBinary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Commands\Paths\Profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Commands\ReleaseOnce.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\logging\Logger.h">
@@ -123,6 +117,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\Intake\IntakeDeploy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Intake\IntakeWheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Subsystems\Lift.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Lift\LiftJoystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Lift\LiftToPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
