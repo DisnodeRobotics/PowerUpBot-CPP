@@ -30,12 +30,14 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_RightToSwitch.cpp" />
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_LeftToSwitch.cpp" />
     <ClCompile Include="src\Commands\Lift\LiftToPosition.cpp" />
     <ClCompile Include="src\Commands\Lift\LiftJoystick.cpp" />
     <ClCompile Include="src\Subsystems\Lift.cpp" />
     <ClCompile Include="src\Commands\Intake\IntakeDeploy.cpp" />
     <ClCompile Include="src\Commands\Auto\Autonomous.cpp" />
-    <ClCompile Include="src\Commands\Auto\Sequences\TestPathfinder.cpp" />
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_CenterToSwitch.cpp" />
     <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp" />
     <ClCompile Include="src\Commands\Intake\IntakeLock.cpp" />
     <ClCompile Include="src\Commands\Intake\IntakeWheel.cpp" />
@@ -49,12 +51,14 @@
     <ClCompile Include="src\victoryconnect\VictoryConnectClient.cpp" />
   </ItemGroup>
   <ItemGroup Label="Headers">
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_RightToSwitch.h" />
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_LeftToSwitch.h" />
     <ClInclude Include="src\Commands\Lift\LiftToPosition.h" />
     <ClInclude Include="src\Commands\Lift\LiftJoystick.h" />
     <ClInclude Include="src\Subsystems\Lift.h" />
     <ClInclude Include="src\Commands\Intake\IntakeDeploy.h" />
     <ClInclude Include="src\Commands\Auto\Autonomous.h" />
-    <ClInclude Include="src\Commands\Auto\Sequences\TestPathfinder.h" />
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_CenterToSwitch.h" />
     <ClInclude Include="src\Commands\Drive\DriveJoystick.h" />
     <ClInclude Include="src\Commands\Intake\IntakeLock.h" />
     <ClInclude Include="src\Commands\Intake\IntakeWheel.h" />

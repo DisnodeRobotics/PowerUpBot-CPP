@@ -7,7 +7,9 @@ Lift::Lift() :
 {
 	this->LiftSpark = RoboMap::sparkLift;
 	this->LiftEncoder = RoboMap::encoderLift;
-	Enable();
+
+	this->LiftSpark->SetSafetyEnabled(false);
+	Disable();
 
 	GetPIDController()->SetContinuous(false);
 	
@@ -27,6 +29,7 @@ void Lift::SetPosition(bool up)
 	else {
 		SetSetpoint(POS_DOWN);
 	}
+	Enable();
 }
 
 void Lift::SetPower(double val)
@@ -36,10 +39,12 @@ void Lift::SetPower(double val)
 
 double Lift::ReturnPIDInput()
 {
+	//std::cout << LiftEncoder->Get() << std::endl;
 	return LiftEncoder->Get();
 }
 
 void Lift::UsePIDOutput(double output)
 {
+	//std::cout << output << std::endl;
 	LiftSpark->Set(output);
 }

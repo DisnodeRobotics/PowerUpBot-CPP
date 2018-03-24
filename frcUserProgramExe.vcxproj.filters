@@ -18,9 +18,6 @@
     <ClCompile Include="src\Commands\Auto\Autonomous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\Auto\Sequences\TestPathfinder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Commands\Drive\DriveJoystick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,12 +63,18 @@
     <ClCompile Include="src\Commands\Lift\LiftToPosition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_CenterToSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_LeftToSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Commands\Auto\Sequences\Path_RightToSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup Label="Headers">
     <ClInclude Include="src\Commands\Auto\Autonomous.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Commands\Auto\Sequences\TestPathfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\Drive\DriveJoystick.h">
@@ -129,6 +132,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Commands\Lift\LiftToPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_CenterToSwitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_LeftToSwitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Commands\Auto\Sequences\Path_RightToSwitch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

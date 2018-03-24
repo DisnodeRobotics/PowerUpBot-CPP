@@ -3,8 +3,8 @@
 #include "Robot.h"
 #include "Commands/Drive/DriveJoystick.h"
 #include "Commands/Lift/LiftJoystick.h"
-
 #include "Commands/Auto/Autonomous.h"
+
 #include <memory>
 #include "ctre\Phoenix.h"
 
@@ -35,12 +35,10 @@ void Robot::RobotInit() {
 	drivejoystick.reset(new DriveJoystick());
 	liftjoystick.reset(new LiftJoystick());
 	autonomousCommand.reset(new Autonomous());
-
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	SmartDashboard::PutNumber("auto_pos", 0);
+	CameraServer::GetInstance()->StartAutomaticCapture(0);
+	CameraServer::GetInstance()->StartAutomaticCapture(1);
 	
-
-	SmartDashboard::PutData(RoboMap::navX.get());
-
 	//VictoryInit();
 
 
@@ -87,7 +85,7 @@ void Robot::TeleopInit()
 void Robot::TeleopPeriodic()
 {
 	Scheduler::GetInstance()->Run();
-
+	//std::cout << "Motor Lift: " << RoboMap::sparkLift->Get() << std::endl;
 	Robot::victoryConnect->SendPacket(0, "navx", "connected :P;" + to_string(RoboMap::navX->GetFusedHeading()));
 	//RoboMap::solenoidPlatform1->Set(DoubleSolenoid::kForward);
 }

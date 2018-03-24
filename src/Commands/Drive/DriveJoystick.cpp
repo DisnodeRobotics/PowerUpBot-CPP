@@ -18,16 +18,10 @@ void DriveJoystick::Initialize()
 
 void DriveJoystick::Execute()
 {
-	std::cout<<"Encoder: "<< RoboMap::encoderLift->Get() << std::endl;
 	
-	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriverLeft()->GetY(), Robot::oi->getDriverRight()->GetX());
-	double lift = -Robot::oi->getLiftJoystick()->GetY();
-
-	if (lift < 0) {
-		lift = lift * 0.25;
-	}
-
-	RoboMap::sparkLift->Set(lift);
+	
+	Robot::drivetrain->SetTankDrive(-Robot::oi->getDriverLeft()->GetY(), -Robot::oi->getDriverRight()->GetY());
+	
 
 }
 

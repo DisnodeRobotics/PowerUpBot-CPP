@@ -10,12 +10,16 @@ LiftJoystick::LiftJoystick() :
 }
 void LiftJoystick::Initialize()
 {
-	Robot::lift->SetPower(0);
+
 }
 
 void LiftJoystick::Execute()
 {
 	double joyVal = -Robot::oi->getLiftJoystick()->GetY();
+
+	if (joyVal < 0) {
+		joyVal = joyVal * 0.5;
+	}
 	Robot::lift->SetPower(joyVal);
 
 }

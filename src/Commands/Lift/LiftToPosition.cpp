@@ -7,7 +7,7 @@
 LiftToPosition::LiftToPosition(bool up) : Command()
 {
 	Requires(Robot::lift.get());
-	SetTimeout(10);
+	SetTimeout(2);
 	m_up = up;
 }
 void LiftToPosition::Initialize()
@@ -17,14 +17,14 @@ void LiftToPosition::Initialize()
 }
 void LiftToPosition::Execute()
 {
-	Robot::lift->SetPosition(m_up);
+	Robot::lift->SetPower(1.0);
 	if (m_up) {
 		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "running;true;");
 	}
 	else {
 		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "running;false;");
 	}
-
+	
 }
 
 
@@ -36,7 +36,7 @@ void LiftToPosition::End()
 	else {
 		Robot::victoryConnect->SendPacket(0, "command_intake_lock", "End;false;");
 	}
-	Robot::lift->SetPower(0);
+	Robot::lift->SetPower(0.15);
 }
 
 void LiftToPosition::Interrupted()
