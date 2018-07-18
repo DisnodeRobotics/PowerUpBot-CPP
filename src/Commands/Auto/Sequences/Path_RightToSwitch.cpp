@@ -79,8 +79,8 @@ void Path_RightToSwitch::Initialize()
 	rightFollower.finished = 0;
 
 
-	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV ,1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
-	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV, 1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV ,1,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV, 1,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
 
 	delete[] points;
 	delete[] trajectory;
@@ -107,7 +107,7 @@ void Path_RightToSwitch::Execute()
 	}
 	double dif = desired - gyro;
 
-	double turn = 3.0 * (-1.0 / 80.0) * dif * -1;
+	double turn = 0.8 * (-1.0 / 80.0) * dif * -1;
 	l += turn;
 	r -= turn;
 

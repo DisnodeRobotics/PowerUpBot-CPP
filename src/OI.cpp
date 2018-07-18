@@ -15,20 +15,20 @@ OI::OI()
 
 
 	//Intake
-	intakeInButton.reset(new JoystickButton(driverJoyboyRight.get(), 1));
-	intakeOutButton.reset(new JoystickButton(driverJoyboyRight.get(), 2));
+	intakeInButton.reset(new JoystickButton(driverJoyboyLeft.get(), 1));
+	intakeOutButton.reset(new JoystickButton(driverJoyboyLeft.get(), 2));
 
 	intakeInButton.get()->WhileHeld(new IntakeWheel(1.0));
 	intakeOutButton.get()->WhileHeld(new IntakeWheel (-1));
 
-	intakeLockButton.reset(new JoystickButton(driverJoyboyRight.get(), 3));
-	intakeUnlockButton.reset(new JoystickButton(driverJoyboyRight.get(), 4));
+	intakeLockButton.reset(new JoystickButton(driverJoyboyRight.get(), 4));
+	intakeUnlockButton.reset(new JoystickButton(driverJoyboyRight.get(), 5));
 
 	intakeLockButton.get()->WhenPressed(new IntakeLock(true));
 	intakeUnlockButton.get()->WhenPressed(new IntakeLock(false));
 
-	intakeDeployButton.reset(new JoystickButton(liftJoyboy.get(), 2));
-	intakeFoldButton.reset(new JoystickButton(liftJoyboy.get(), 3));
+	intakeDeployButton.reset(new JoystickButton(driverJoyboyRight.get(), 2));
+	intakeFoldButton.reset(new JoystickButton(driverJoyboyRight.get(), 3));
 
 	intakeDeployButton.get()->WhenPressed(new IntakeDeploy(false));
 	intakeFoldButton.get()->WhenPressed(new IntakeDeploy(true));

@@ -107,7 +107,7 @@ void Path_CenterToSwitch::Execute()
 	}
 	double dif = desired - gyro;
 
-	double turn = 3.0 * (-1.0 / 80.0) * dif * -1 ;
+	double turn = 0.8 * (-1.0 / 80.0) * dif * -1 ;
 	l += turn;
 	r -= turn;
 	

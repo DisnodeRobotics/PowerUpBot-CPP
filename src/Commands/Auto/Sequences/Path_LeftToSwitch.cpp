@@ -7,11 +7,12 @@ Path_LeftToSwitch::Path_LeftToSwitch()
 {
 
 	Requires(Robot::drivetrain.get());
-	SetTimeout(30);
+	SetTimeout(4);
 }
 
 void Path_LeftToSwitch::Initialize()
 {
+	/*
 	RoboMap::navX->Reset();
 
 	int POINT_LENGTH = 3;
@@ -20,31 +21,43 @@ void Path_LeftToSwitch::Initialize()
 	std::cout << DriverStation::GetInstance().GetLocation() << std::endl;
 
 	Waypoint p1 = { 0, 0 , d2r(0) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-	Waypoint p2 = { 2,0,d2r(0) };             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
+	Waypoint p2 = { 2,0,d2r(0) };  
+	Waypoint p3 = { 2.2,0,d2r(0) };  // Waypoint @ x=-1, y= 2, exit angle= 0 radians
 					  //Waypoint p2 = { 2, 0.5,d2r(90) };             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
 
 
 	bool leftSwitch = false;
-
-	if (DriverStation::GetInstance().GetGameSpecificMessage()[0] == 'R') {
+	bool leftScale = false;
+	if (DriverStation::GetInstance().GetGameSpecificMessage()[0] == 'L') {
 		leftSwitch = true;
 	}
-
+	if (DriverStation::GetInstance().GetGameSpecificMessage()[1] == 'L') {
+		leftScale = true;
+	}
 	
 	if (leftSwitch) {
 		std::cout << "L POS" << std::endl;
-		p1 = { 0, 0 , d2r(15) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-		p2 = { 0.6, -0.2,d2r(0) };
+		p1 = { 0, 0 , d2r(5) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
+		p2 = { 0.6, 0.3,d2r(0) };
+		p3 = { 0.6, 0.3,d2r(0) };
 	}
-	else {
+	else if (leftScale){
 		std::cout << "R POS" << std::endl;
 		p1 = { 0, 0 , d2r(-30) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-		p2 = { 2, -2.5,d2r(0) };
+		p2 = { 2, -2,d2r(20) };
+		p3 = { 4, -1.2,d2r(0) };
 	}
+	else {
+		p1 = { 0, 0 , d2r(-30) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
+		p2 = { 2, -2.5,d2r(0) };
+		p3 = { 2.2, -2.5,d2r(0) };
+	}
+
+
 	
 	points[0] = p1;
 	points[1] = p2;
-	//points[0] = p1;
+	points[2] = p3;
 	//points[1] = p2;
 
 	TrajectoryCandidate candidate;
@@ -79,12 +92,12 @@ void Path_LeftToSwitch::Initialize()
 	rightFollower.finished = 0;
 
 
-	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV ,1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
-	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV, 1.2,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configL = { Robot::drivetrain->GetEncoderLDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV ,1,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
+	configR = { Robot::drivetrain->GetEncoderRDistance(), DriveProfile::ENCODER_TICKS_PER_REV, DriveProfile::TICKS_PER_REV, 1.0,0.0,0.5,1.0 / DriveProfile::MAX_VELOCITY, 0 };
 
 	delete[] points;
 	delete[] trajectory;
-
+	*/
 
 }
 
@@ -92,22 +105,22 @@ void Path_LeftToSwitch::Execute()
 {
 
 
-
+	/*
 	double l = pathfinder_follow_encoder(configL, &leftFollower, leftTrajectory.get(), length, Robot::drivetrain->GetEncoderLDistance());
 	double r = pathfinder_follow_encoder(configR, &rightFollower, rightTrajectory.get(), length, Robot::drivetrain->GetEncoderRDistance());
 
 
 	double gyro = RoboMap::navX->GetFusedHeading();
-	if (gyro > 180) {
-		gyro -= 360;
+	if (gyro > 179) {
+		gyro -= 359;
 	}
 	double desired = r2d(leftFollower.heading);
-	if (desired > 180) {
-		desired -= 360;
+	if (desired > 179) {
+		desired -= 359  ;
 	}
 	double dif = desired - gyro;
 
-	double turn = 3.0 * (-1.0 / 80.0) * dif * -1;
+	double turn = 0.9 * (-1.0 / 80.0) * dif * -1;
 	l += turn;
 	r -= turn;
 
@@ -123,13 +136,15 @@ void Path_LeftToSwitch::Execute()
 
 	std::cout << "Pathfinder: " << "L: " << l << " R: " << r << " Gyro/Target: " << gyro << "/" << desired << " Turn: " << turn << " Last Error: " << leftFollower.last_error << " Encoders: " << Robot::drivetrain->GetEncoderLDistance() << "/" << Robot::drivetrain->GetEncoderRDistance() << std::endl;
 	//Robot::drivetrain->SetTankDrive(0.5,0.5);
-
+	*/
+	Robot::drivetrain->SetArcadeDrive(0.6, 0);
 }
 
 
 bool Path_LeftToSwitch::IsFinished()
 {
-	return leftFollower.finished &&  rightFollower.finished;
+	//return leftFollower.finished &&  rightFollower.finished;
+	return IsTimedOut();
 }
 
 void Path_LeftToSwitch::End()

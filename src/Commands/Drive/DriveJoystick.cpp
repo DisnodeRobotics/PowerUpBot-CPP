@@ -19,9 +19,7 @@ void DriveJoystick::Initialize()
 void DriveJoystick::Execute()
 {
 	
-	
-	Robot::drivetrain->SetTankDrive(-Robot::oi->getDriverLeft()->GetY(), -Robot::oi->getDriverRight()->GetY());
-	
+	Robot::drivetrain->SetArcadeDrive(-Robot::oi->getDriverLeft()->GetY(), Robot::oi->getDriverRight()->GetX());
 
 }
 

@@ -3,8 +3,8 @@
 namespace DriveProfile {
 	const double WHEELBASE_WIDTH       = 0.6033;
 	const double WHEEL_CIRCUMFERENCE   = 0.4878;
-	const double MAX_VELOCITY          = 0.5;
-	const double MAX_ACCELERATION      = 1.2;
+	const double MAX_VELOCITY          = 1.7;
+	const double MAX_ACCELERATION      = 0.9;
 	const double MAX_JERK              = 40;
 	const double ENCODER_TICKS_PER_REV = 20;
 	const double GEAR_RATIO            = 0.093457;
